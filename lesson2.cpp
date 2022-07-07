@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+// Part 1
 class Person {
 public:
 	Person(std::string _name, unsigned int _age, unsigned int _weight)
@@ -88,8 +89,47 @@ private:
 
 unsigned int Student::s_count;
 
+// Part 2
+class Fruit {
+public:
+	Fruit(std::string _name, std::string _color) : m_name(_name), m_color(_color) {}
+	~Fruit() {}
+
+	std::string get_name() {
+		return m_name;
+	};
+	
+	std::string get_color() {
+		return m_color;
+	};
+private:
+	std::string m_name;
+	std::string m_color;
+};
+
+class Apple : public Fruit {
+public:
+	Apple(std::string _name, std::string _color) : Fruit(_name + " apple", _color) {}
+	Apple(std::string _color) : Fruit("apple", _color) {}
+	~Apple() {}
+private:
+};
+
+class Banana : public Fruit {
+public:
+	Banana() : Fruit("banana", "yellow") {}
+	~Banana() {}
+};
+
+class GrannySmith : public Apple {
+public:
+	GrannySmith() : Apple("Granny Smith", "green") {}
+	~GrannySmith() {}
+};
+
 int main(void)
 {
+	// Part 1
 	Student s1("Ivan Ivanov", 19, 76, 2014);
 	Student s2("Vladislav Galimyanov", 24, 92, 2022);
 	Student s3("Ekaterina Novikova", 22, 62, 2013);
@@ -105,4 +145,13 @@ int main(void)
 	s2.get_info();
 
 	s3.get_info();
+
+	// Part 2
+	Apple a("red");
+	Banana b;
+	GrannySmith c;
+
+	std::cout << "\nMy " << a.get_name() << " is " << a.get_color() << ".\n";
+	std::cout << "My " << b.get_name() << " is " << b.get_color() << ".\n";
+	std::cout << "My " << c.get_name() << " is " << c.get_color() << ".\n";
 }
